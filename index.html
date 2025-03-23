@@ -1,8 +1,4 @@
-from pathlib import Path
-from zipfile import ZipFile
 
-# HTML com o botão apontando para o link do MediaFire
-final_thank_you_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,15 +59,4 @@ final_thank_you_html = """
   <p class="disclaimer">Save this link carefully. This page won't stay online for long.</p>
 </body>
 </html>
-"""
 
-# Salvar HTML
-html_path = Path("/mnt/data/index.html")
-html_path.write_text(final_thank_you_html)
-
-# Criar ZIP
-zip_output = Path("/mnt/data/thank_you_with_mediafire_link.zip")
-with ZipFile(zip_output, 'w') as zipf:
-    zipf.write(html_path, arcname="index.html")
-
-zip_output.name
