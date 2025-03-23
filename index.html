@@ -1,4 +1,8 @@
+from pathlib import Path
+from zipfile import ZipFile
 
+# HTML com o botão apontando para o link do MediaFire
+final_thank_you_html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,8 +58,20 @@
   <p>You now have access to the guide <strong>"The Secret Influencers Hide"</strong>.</p>
   <p>Click the button below to download your file:</p>
 
-  <a class="download-button" href="https://yourpdflink.com" target="_blank">📥 Download Guide Now</a>
+  <a class="download-button" href="https://www.mediafire.com/file/1vxiborcnmrnsv4/THE_SECRET_INFLUENCERS_.pdf/file" target="_blank">📥 Download Guide Now</a>
 
   <p class="disclaimer">Save this link carefully. This page won't stay online for long.</p>
 </body>
 </html>
+"""
+
+# Salvar HTML
+html_path = Path("/mnt/data/index.html")
+html_path.write_text(final_thank_you_html)
+
+# Criar ZIP
+zip_output = Path("/mnt/data/thank_you_with_mediafire_link.zip")
+with ZipFile(zip_output, 'w') as zipf:
+    zipf.write(html_path, arcname="index.html")
+
+zip_output.name
